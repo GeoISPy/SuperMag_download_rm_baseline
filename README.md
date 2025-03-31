@@ -1,0 +1,2 @@
+# SuperMag_download_rm_baseline
+下载SuperMag地磁台站地磁原始数据，并根据每月5个磁静日去除基线值。
