@@ -1,5 +1,5 @@
-function []=calculate_baseline(year,month,month_day,station)
-data=download_supermag(year,month,month_day,station);
+function []=calculate_baseline(year,month,month_day,station,usrid)
+data=download_supermag(year,month,month_day,station,usrid);
 % load(['E:\DATA\MAG\Ground\Ground_main\',station,'\',num2str(year),num2str(month,'%02d'),'.mat']);
 extracted_data=extract_q_values('E:\DATA\INDEX\Quiet_days.txt');
 [ia,~]=find(extracted_data(:,1)==year&extracted_data(:,2)==month);
@@ -13,6 +13,7 @@ baseline=mean(q_data(ia,9));
 data_rb=data(:,9)-baseline;
 data=[data,data_rb];
 save(['E:\DATA\MAG\Ground\Ground_main\',station,'\',num2str(year),num2str(month,'%02d'),'_rb.mat'],'data')
+
 
 
 
