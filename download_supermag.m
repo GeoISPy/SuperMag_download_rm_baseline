@@ -1,8 +1,8 @@
-function data=download_supermag(year,month,month_day,station)
+function data=download_supermag(year,month,month_day,station,usrid)
 
 data=[];
 for i=1:month_day
-    sm_data = fetchSuperMAG('data','gispyer',[year,month,i,0,0,0],86400,'all,baseline=none',station);
+    sm_data = fetchSuperMAG('data',usrid,[year,month,i,0,0,0],86400,'all,baseline=none',station);
     if ischar(sm_data)
         sm_data=regexprep(sm_data, 'nan', 'null');
         index=find(sm_data=='[',1);
@@ -24,4 +24,5 @@ path=['E:\DATA\MAG\Ground\Ground_main\',station,'\'];
 if ~exist(path,"dir")
     mkdir(path)
 end
+
 save(['E:\DATA\MAG\Ground\Ground_main\',station,'\',num2str(year),num2str(month,'%02d'),'.mat'],'data')
